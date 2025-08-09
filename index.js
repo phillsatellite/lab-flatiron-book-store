@@ -43,5 +43,44 @@ const bookStore = {
     ]
 }
 
-// Write your code here!
+//This function takes the title and changes it to "Flatbooks Technical Books"
+function changeTitle(){
+    const bookStoreTitle = document.querySelector("#header")
+    bookStoreTitle.textContent = bookStore.name;
+}
 
+changeTitle()
+
+function addBooks(){
+    const bookList = document.querySelector("#book-list");
+
+    //Checks if there is the #delete-this placeholder and deletes if there is
+    const placeholder = document.querySelector("#delete-this");
+        if(placeholder){
+            placeholder.remove();
+        }
+
+    //Loops through each book in array / creates a new element and displays intended data
+    bookStore.books.forEach(book => {
+        const bookContainer = document.createElement("li");
+
+        const bookTitle = document.createElement("h3");
+        bookTitle.textContent = book.title;
+
+        const bookAuthor = document.createElement("p");
+        bookAuthor.textContent = book.author;
+
+        const bookImage = document.createElement("img");
+        bookImage.src = book.imageUrl;
+
+        //appends data to the li 
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(bookAuthor);
+        bookContainer.appendChild(bookImage);
+
+        //appends the li to the ul
+        bookList.appendChild(bookContainer);
+    })
+}
+
+addBooks();
